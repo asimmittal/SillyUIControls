@@ -1,0 +1,55 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="AsynchronousTasks.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True"
+    Loaded="PhoneApplicationPage_Loaded_1">
+
+    <Grid>
+        <StackPanel Margin="50">
+            <TextBlock Text="Async Tasks" FontSize="36" Margin="0,0,0,20"/>
+            
+            <!-- Task 1 -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top" Name="Task1Panel" Margin="15">
+                <Image Source="/Assets/triangle.png" Height="24" Width="24" Visibility="Collapsed" Margin="0,0,20,0"/>
+                <Image Source="/Assets/check.png" Height="24" Width="24" Margin="0,0,20,0" Visibility="Collapsed"/>
+                <TextBlock Text="Task 1" VerticalAlignment="Center" FontSize="32"/>
+                <ProgressBar VerticalAlignment="Center" Width="200" Height="10" Margin="40,0,0,0" Maximum="100" Minimum="0"/>
+            </StackPanel>
+            
+            <!-- Task 2 -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top" Name="Task2Panel" Margin="15">
+                <Image Source="/Assets/triangle.png" Height="24" Width="24" Visibility="Collapsed" Margin="0,0,20,0"/>
+                <Image Source="/Assets/check.png" Height="24" Width="24" Margin="0,0,20,0" Visibility="Collapsed"/>
+                <TextBlock Text="Task 2" VerticalAlignment="Center" FontSize="32"/>
+                <ProgressBar VerticalAlignment="Center" Width="200" Height="10" Margin="40,0,0,0"  Maximum="100" Minimum="0"/>
+            </StackPanel>
+            
+            <!-- Task 3 -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top" Name="Task3Panel" Margin="15">
+                <Image Source="/Assets/triangle.png" Height="24" Width="24" Visibility="Collapsed" Margin="0,0,20,0"/>
+                <Image Source="/Assets/check.png" Height="24" Width="24" Margin="0,0,20,0" Visibility="Collapsed" />
+                <TextBlock Text="Task 3" VerticalAlignment="Center" FontSize="32"/>
+                <ProgressBar VerticalAlignment="Center" Width="200" Height="10" Margin="40,0,0,0"  Maximum="100" Minimum="0"/>
+            </StackPanel>
+
+            <!-- Task 4 -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top" Name="Task4Panel" Margin="15">
+                <Image Source="/Assets/triangle.png" Height="24" Width="24" Visibility="Collapsed" Margin="0,0,20,0"/>
+                <Image Source="/Assets/check.png" Height="24" Width="24" Margin="0,0,20,0" Visibility="Collapsed"/>
+                <TextBlock Text="Task 4" VerticalAlignment="Center" FontSize="32"/>
+                <ProgressBar VerticalAlignment="Center" Width="200" Height="10" Margin="40,0,0,0"  Maximum="100" Minimum="0"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+
+</phone:PhoneApplicationPage>

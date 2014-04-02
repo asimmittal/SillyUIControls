@@ -1,0 +1,9 @@
+﻿<Window x:Class="CustomControls.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:CustomControls"
+        Title="MainWindow" Height="519" Width="872">
+    <Grid>
+        <local:VideoPlayer x:Name="vPlayer"/>
+    </Grid>
+</Window>

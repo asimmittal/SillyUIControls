@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="CustomControls.VideoPlayer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="487" d:DesignWidth="723" Background="Black"
+             Loaded="UserControl_Loaded_1"
+             SizeChanged="UserControl_SizeChanged_1"
+             MouseMove="UserControl_MouseMove_1">
+    <Grid>
+
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="resources/MediaSlider.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <!-- Media Element -->
+        <MediaElement Name="mediaPlayer" LoadedBehavior="Manual" UnloadedBehavior="Manual" MediaEnded="mediaPlayer_MediaEnded_1" MediaOpened="mediaPlayer_MediaOpened_1"/>
+        
+        <!-- Control Panel -->
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Name="controls" Background="#BC000000" MouseLeave="controls_MouseLeave_1">
+            <DockPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" LastChildFill="True">
+                
+                <!-- Play button with a play and pause shapes -->
+                <Button Height="35" Width="35" Name="btnPlay" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnPlay_Click" Background="Black">
+                    <Grid Margin="5">
+                        <!-- Play icon : triangle -->
+                        <Polygon Points="0,0 12,9 0,18" Stroke="Black"  Name="polyPlay" Visibility="Visible" Fill="White"/>
+                        
+                        <!-- Pause icon : parallel bars -->
+                        <StackPanel Orientation="Horizontal" Name="polyPause" Visibility="Hidden">
+                            <Polygon Points="0,0 5,0 5,15 0,15" Stroke="Black" Fill="White"/>
+                            <Polygon Points="0,0 5,0 5,15 0,15" Stroke="Black" Margin="3,0,0,0" Fill="White"/>
+                        </StackPanel>
+                    </Grid>
+                </Button>
+
+                <!-- Stop button -->
+                <Button Margin="10,0,0,0" Height="35" Width="35" Name="btnStop" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnStop_Click" Background="Black">
+                    <StackPanel Margin="8">
+                        <!-- stop icon : rectangle -->
+                        <Polygon Points="0,0 15,0 15,15 0,15" Stroke="Black" Fill="White"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Stop button -->
+                <Button Margin="10,0,0,0" Height="35" Width="35" Name="btnMute" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnMute_Click_1" Background="Black">
+                    <StackPanel Margin="4,8,8,8" Orientation="Horizontal">
+                        <!-- stop icon : rectangle -->
+                        <Polygon Points="0,4 5,4 5,12 0,12" Fill="White" Margin="-1"/>
+                        <Polygon Points="0,10 10,0 10,20" Fill="White" Margin="-3"/>                        
+                    </StackPanel>
+                </Button>
+
+                <!-- Media seeker and track represented using a slider -->
+                <Slider Width="600" Orientation="Horizontal" Margin="10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Name="seeker" Thumb.DragStarted="seeker_DragStarted_1" Thumb.DragCompleted="seeker_DragCompleted_1"/>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</UserControl>

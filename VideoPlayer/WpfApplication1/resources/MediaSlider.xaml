@@ -1,0 +1,125 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Style for the Increase repeat button for this slider . Part on right of thumb-->
+    <Style x:Key="IncreaseSliderButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Height="10" Background="#404040" CornerRadius="0" Margin="0" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Style for the Decrease repeat button for this slider. Part on left of thumb -->
+    <Style x:Key="DecreaseSliderButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Focusable" Value="false"/>
+
+        <!-- 
+            This template affects the part of the slider before the thumb. 
+            The control in this case, needs to show a color in the part of the
+            track before the thumb.
+        -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">                    
+                    <Border Height="10" Background="Red" CornerRadius="0" Margin="0" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Slider thumb gradient, we'll use this in a jiffy-->
+    <LinearGradientBrush x:Key="SliderThumbGradient" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#f7f7f7"/>
+        <GradientStop Offset="1" Color="#bcbcbc"/>
+    </LinearGradientBrush>
+
+    <!-- Style for the slider's thumb -->
+    <Style x:Key="SliderThumbStyle" TargetType="{x:Type Thumb}">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="Height" Value="14"/>
+        <Setter Property="Width" Value="14"/>
+
+        <!-- again we're going to use a custom control template to define its look and feel -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Rectangle Name="Shape" Fill="{DynamicResource SliderThumbGradient}" Stroke="#404040" StrokeThickness="1" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Here we define the control template that we will use for horizontal sliders-->
+    <ControlTemplate x:Key="HorizontalSlider" TargetType="{x:Type Slider}">
+        <Grid>
+            <!-- 
+                Our slider's grid has three rows, the top and bottom rows are empty and
+                the middle row is where we'll place the Track, the thumb and the increase
+                and decrease buttons.
+                
+                Using three rows in the Grid to center the slider content
+            -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" MinHeight="{TemplateBinding Slider.MinHeight}"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- 
+                Row 1: Let's place the track of the slider in here. The track itself isnt a visual element.
+                Its the logical object that contains the three parts of the slider:
+                    a. part before the thumb (decrease slider repeat button. Click on this region to decrease value)
+                    b. the thumb - defined above (the thing most commonly used to change the value)
+                    c. part after the thumb (increase slider repeat button. Click on this region to increase value) 
+            
+                Each of these three elements can be styled independently as we've done in the styles above
+            -->
+            <Track Grid.Row="1" Name="PART_Track">
+
+                <!-- 
+                    Our decrease repeat button needs to show a fill/color in the track. That's why we're using
+                    a custom control template in the style for this element
+                -->
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource DecreaseSliderButtonStyle}" Command="Slider.DecreaseLarge" />
+                </Track.DecreaseRepeatButton>
+
+                <!-- Our thumb style -->
+                <Track.Thumb>
+                    <Thumb Style="{StaticResource SliderThumbStyle}" />
+                </Track.Thumb>
+
+                <!-- 
+                    Our increase repeat button needs to show a dark background in the track. Refer to the custom 
+                    control template we're using above
+                -->
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource IncreaseSliderButtonStyle}" Command="Slider.IncreaseLarge" />
+                </Track.IncreaseRepeatButton>
+            </Track>
+        </Grid>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type Slider}">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="MinWidth" Value="104" />
+                <Setter Property="MinHeight" Value="21" />
+                <Setter Property="Template" Value="{StaticResource HorizontalSlider}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

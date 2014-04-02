@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="WpfApplication1.Pie"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded_1" SizeChanged="UserControl_SizeChanged_1">
+    <Grid>
+        <Ellipse Name="bgCircle"/>
+        <Path Name="path" StrokeThickness="1.5" Margin="0"/>
+        <Ellipse Name="hole" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.RenderTransform>
+                <ScaleTransform ScaleX="0.45" ScaleY="0.45"/>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+        <Label Content="Value" HorizontalAlignment="Center" VerticalAlignment="Center" 
+               FontFamily="Segoe UI Light" FontSize="38" Name="lblValue"
+               VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+    </Grid>
+</UserControl>
